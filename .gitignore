@@ -205,3 +205,12 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+dist/*
+.vscode
+examples/
+proxy/events/
+proxy/run/
+
+# Extracted FTL source files
+ftl_data/

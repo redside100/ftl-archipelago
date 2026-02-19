@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+	<title><![CDATA[ FTL Archipelago ]]></title>
+	<author><![CDATA[ Redside ]]></author>
+	<version><![CDATA[ 1.0 ]]></version>
+	<threadUrl><![CDATA[ https://redside.moe ]]></threadUrl>
+	<description>
+<![CDATA[
+Archipelago mod for FTL. Requires Hyperspace!
+
+Do not run FTL normally with this mod! Instead, run the AP Proxy (see the README) and launch FTL through it.
+]]>
+	</description>
+</metadata>
