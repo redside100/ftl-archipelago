@@ -1,6 +1,7 @@
 import os
 import asyncio
 from pathlib import Path
+import time
 
 from proxy import APProxy
 import subprocess
@@ -32,9 +33,18 @@ async def main():
     try:
         Path("run").mkdir(exist_ok=True)
         os.chdir("run")
-        subprocess.run([game_executable_path])
+        process = subprocess.Popen([game_executable_path])
+
+        while process.poll() is None:
+            try:
+                await asyncio.sleep(0.5)
+            except asyncio.CancelledError as e:
+                process.kill()
+                raise e
+
     except FileNotFoundError:
         print(f"Executable not found at {game_executable_path}.")
+
     finally:
         os.chdir(wd)
     
@@ -52,8 +62,9 @@ if __name__ == "__main__":
         game_executable_path = executable_path
     try:
         asyncio.run(main())
-    except Exception:
-        print("Shutting down AP Proxy.")
+    except KeyboardInterrupt:
+        print("Shutting down AP proxy.")
+    finally:
         cleanup()
 
     

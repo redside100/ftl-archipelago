@@ -1,12 +1,9 @@
 ---@diagnostic disable: lowercase-global
 
 
-function override_has_augmentation(ship, augment, value)
-    if value == "FTL_JUMPER" then
-        print(augment .. " check " .. value)
-        return Defines.Chain.HALT, 1
-    end
-    return Defines.Chain.CONTINUE, value
+-- Override the run seed to a fixed value each time, so world generation is consistent
+function override_get_run_seed()
+    return true, 42424242
 end
 
-script.on_internal_event(Defines.InternalEvents.HAS_AUGMENTATION, override_has_augmentation)
+script.on_internal_event(Defines.InternalEvents.GET_RUN_SEED, override_get_run_seed)

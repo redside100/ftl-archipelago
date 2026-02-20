@@ -12,11 +12,13 @@ class APProxy:
     async def listen_hs_to_ap(self):
         # Listen for events from HS -> AP file and process them
         while True:
-            with open(self.hs_to_ap_proxy_file_path, 'r') as f:
+            with open(self.hs_to_ap_proxy_file_path, 'r+') as f:
                 for line in f.readlines():
                     event = APEvent.deserialize(line.strip())
                     print(event)
-                    
+                f.seek(0)
+                f.truncate(0)
+
             await asyncio.sleep(1)
 
     async def listen_ap_to_hs(self):

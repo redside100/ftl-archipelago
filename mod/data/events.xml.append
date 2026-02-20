@@ -1,0 +1,9 @@
+<event name = "AP_DEBUG">
+    <text>FTL Archipelago Debug Menu</text>
+    <choice>
+        <text>Print current sector and beacon</text>
+        <event load="AP_DEBUG_PRINT_SECTOR_BEACON"/>
+    </choice>
+</event>
+
+<event name = "AP_DEBUG_PRINT_SECTOR_BEACON" />
