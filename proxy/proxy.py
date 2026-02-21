@@ -1,6 +1,6 @@
 import asyncio
+import json
 
-from event import APEvent
 
 class APProxy:
     def __init__(self, hs_to_ap_proxy_file_path: str, ap_to_hs_proxy_file_path: str):
@@ -12,10 +12,16 @@ class APProxy:
     async def listen_hs_to_ap(self):
         # Listen for events from HS -> AP file and process them
         while True:
-            with open(self.hs_to_ap_proxy_file_path, 'r+') as f:
+            with open(self.hs_to_ap_proxy_file_path, "r+") as f:
                 for line in f.readlines():
-                    event = APEvent.deserialize(line.strip())
-                    print(event)
+                    line = line.strip()
+                    if line:
+                        try:
+                            event = json.loads(line.strip())
+                            print(event)
+                        except json.JSONDecodeError:
+                            print(f"Failed to decode JSON for event: {line.strip()}")
+
                 f.seek(0)
                 f.truncate(0)
 
@@ -24,12 +30,11 @@ class APProxy:
     async def listen_ap_to_hs(self):
         # Listen for events from AP -> HS file and process them
         pass
-    
 
     def start(self):
         self.listen_tasks.add(asyncio.create_task(self.listen_hs_to_ap()))
         self.listen_tasks.add(asyncio.create_task(self.listen_ap_to_hs()))
-    
+
     def stop(self):
         for task in self.listen_tasks:
             task.cancel()

@@ -15,11 +15,8 @@ function mods.FTLAP.proxy.fetchEvents()
         if content and content ~= "" then
             -- Parse through events by newline
             for line in content:gmatch("[^\r\n]+") do
-                local event_type, event_data = line:match("([^:]+):([^:]+)")
-                if event_type and event_data then
-                    -- Process the event (for now, just print it)
-                    print("Received event from AP Proxy - Type: " .. event_type .. ", Data: " .. event_data)
-                end
+                local payload = json.decode(line)
+                print(payload)
             end
         end
         -- After processing events, clear the file
@@ -41,9 +38,4 @@ function onTick()
     end
 end
 
-function init()
-    print("FTL Archipelago - AP_TO_HS bridge active!")
-end
-
 script.on_internal_event(Defines.InternalEvents.ON_TICK, onTick)
-script.on_internal_event(Defines.InternalEvents.MAIN_MENU, init)

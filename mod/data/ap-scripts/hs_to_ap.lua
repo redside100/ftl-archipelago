@@ -5,18 +5,12 @@
 
 HS_TO_AP_PROXY_FILE = os.getenv("HS_TO_AP_PROXY_FILE")
 
-function mods.FTLAP.proxy.writeEvent(event_type, event_data)
+function mods.FTLAP.proxy.writeEvent(event_data)
     local file = io.open(HS_TO_AP_PROXY_FILE or "", "a")
     if file then
-        file:write(event_type .. ":" .. event_data .. "\n")
+        file:write(json.encode(event_data) .. '\n')
         file:close()
     else
         return nil
     end
 end
-
-function init()
-    print("FTL Archipelago - HS_TO_AP bridge active!")
-end
-
-script.on_internal_event(Defines.InternalEvents.MAIN_MENU, init)

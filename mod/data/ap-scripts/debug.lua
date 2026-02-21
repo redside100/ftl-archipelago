@@ -2,20 +2,29 @@
 
 function printSectorBeacon()
     local sectorMessage = "Sector " .. Hyperspace.App.world.starMap.currentSector.level
-    local beaconMessage = "Beacon (" .. Hyperspace.App.world.starMap.currentLoc.loc.x .. ", " .. Hyperspace.App.world.starMap.currentLoc.loc.y .. ")"
+    local beaconMessage = "Beacon (" ..
+        Hyperspace.App.world.starMap.currentLoc.loc.x .. ", " .. Hyperspace.App.world.starMap.currentLoc.loc.y .. ")"
     print(sectorMessage)
     print(beaconMessage)
-    mods.FTLAP.proxy.writeEvent("DEBUG_PRINT", sectorMessage)
-    mods.FTLAP.proxy.writeEvent("DEBUG_PRINT", beaconMessage)
+
+    payload = {
+        type = "debug_info",
+        data = {
+            sector = Hyperspace.App.world.starMap.currentSector.level,
+            beacon = {
+                x = Hyperspace.App.world.starMap.currentLoc.loc.x,
+                y = Hyperspace.App.world.starMap.currentLoc.loc.y
+            }
+        }
+    }
+    mods.FTLAP.proxy.writeEvent(payload)
 end
 
 function jumbleStarMap()
     local starMap = Hyperspace.App.world.starMap
     for location in mods.FTLAP.util.vter(starMap.locations) do
-        print(location.loc.x .. ", " .. location.loc.y)
-        location.loc.x = math.random(0, 1000)
-        location.loc.y = math.random(0, 1000)
-        print("JUMBLED TO: " .. location.loc.x .. ", " .. location.loc.y)
+        location.loc.x = math.random(0, 500)
+        location.loc.y = math.random(0, 500)
     end
 end
 
