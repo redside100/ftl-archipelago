@@ -6,4 +6,9 @@
     <mod-append:script>data/ap-scripts/hs_to_ap.lua</mod-append:script>
     <mod-append:script>data/ap-scripts/overrides.lua</mod-append:script>
     <mod-append:script>data/ap-scripts/debug.lua</mod-append:script>
+    <mod-append:script>data/ap-scripts/ui.lua</mod-append:script>
+</mod:findLike>
+
+<mod:findLike type="customTextStyle">
+    <mod:setAttributes enabled = "true" />
 </mod:findLike>

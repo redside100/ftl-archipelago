@@ -1,8 +1,12 @@
 <event name = "AP_DEBUG">
     <text>FTL Archipelago Debug Menu</text>
     <choice>
-        <text>Print current sector and beacon</text>
-        <event load="AP_DEBUG_PRINT_SECTOR_BEACON"/>
+        <text>Toggle debug display</text>
+        <event load="AP_DEBUG_TOGGLE_DEBUG_DISPLAY"/>
+    </choice>
+    <choice>
+        <text>Send test proxy event</text>
+        <event load="AP_DEBUG_SEND_TEST_PROXY_EVENT"/>
     </choice>
     <choice>
         <text>Jumble star map</text>
@@ -10,5 +14,6 @@
     </choice>
 </event>
 
-<event name = "AP_DEBUG_PRINT_SECTOR_BEACON" />
+<event name = "AP_DEBUG_TOGGLE_DEBUG_DISPLAY" />
+<event name = "AP_DEBUG_SEND_TEST_PROXY_EVENT" />
 <event name = "AP_DEBUG_JUMBLE_STAR_MAP" />

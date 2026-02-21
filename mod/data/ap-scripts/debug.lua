@@ -1,12 +1,6 @@
 ---@diagnostic disable: lowercase-global
 
-function printSectorBeacon()
-    local sectorMessage = "Sector " .. Hyperspace.App.world.starMap.currentSector.level
-    local beaconMessage = "Beacon (" ..
-        Hyperspace.App.world.starMap.currentLoc.loc.x .. ", " .. Hyperspace.App.world.starMap.currentLoc.loc.y .. ")"
-    print(sectorMessage)
-    print(beaconMessage)
-
+local function sendTestProxyEvent()
     payload = {
         type = "debug_info",
         data = {
@@ -20,7 +14,7 @@ function printSectorBeacon()
     mods.FTLAP.proxy.writeEvent(payload)
 end
 
-function jumbleStarMap()
+local function jumbleStarMap()
     local starMap = Hyperspace.App.world.starMap
     for location in mods.FTLAP.util.vter(starMap.locations) do
         location.loc.x = math.random(0, 500)
@@ -28,5 +22,15 @@ function jumbleStarMap()
     end
 end
 
-script.on_game_event("AP_DEBUG_PRINT_SECTOR_BEACON", false, printSectorBeacon)
+local function toggleDebugDisplay()
+    mods.FTLAP.debug.debugDisplay = not mods.FTLAP.debug.debugDisplay
+end
+
+function mods.FTLAP.debug.openDebugMenu()
+    Hyperspace.CustomEventsParser.GetInstance():LoadEvent(Hyperspace.App.world, "AP_DEBUG", true,
+        Hyperspace.Global.currentSeed)
+end
+
+script.on_game_event("AP_DEBUG_SEND_TEST_PROXY_EVENT", false, sendTestProxyEvent)
 script.on_game_event("AP_DEBUG_JUMBLE_STAR_MAP", false, jumbleStarMap)
+script.on_game_event("AP_DEBUG_TOGGLE_DEBUG_DISPLAY", false, toggleDebugDisplay)
