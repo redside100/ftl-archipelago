@@ -3,11 +3,10 @@
 -- hs_to_ap handles events from Hyperspace -> AP Proxy.
 -- This usually includes the player's checks and deathlink triggers.
 
-tick_count = 0
-hs_to_ap_proxy_file = os.getenv("HS_TO_AP_PROXY_FILE")
+HS_TO_AP_PROXY_FILE = os.getenv("HS_TO_AP_PROXY_FILE")
 
-function write_event(event_type, event_data)
-    local file = io.open(hs_to_ap_proxy_file or "", "a")
+function mods.FTLAP.proxy.writeEvent(event_type, event_data)
+    local file = io.open(HS_TO_AP_PROXY_FILE or "", "a")
     if file then
         file:write(event_type .. ":" .. event_data .. "\n")
         file:close()

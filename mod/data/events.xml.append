@@ -4,6 +4,11 @@
         <text>Print current sector and beacon</text>
         <event load="AP_DEBUG_PRINT_SECTOR_BEACON"/>
     </choice>
+    <choice>
+        <text>Jumble star map</text>
+        <event load="AP_DEBUG_JUMBLE_STAR_MAP"/>
+    </choice>
 </event>
 
 <event name = "AP_DEBUG_PRINT_SECTOR_BEACON" />
+<event name = "AP_DEBUG_JUMBLE_STAR_MAP" />

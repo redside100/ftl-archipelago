@@ -1,4 +1,6 @@
 <mod:findLike type="scripts">
+    <mod-append:script>data/ap-scripts/globals.lua</mod-append:script>
+    <mod-append:script>data/ap-scripts/util.lua</mod-append:script>
     <mod-append:script>data/ap-scripts/ap_to_hs.lua</mod-append:script>
     <mod-append:script>data/ap-scripts/hs_to_ap.lua</mod-append:script>
     <mod-append:script>data/ap-scripts/overrides.lua</mod-append:script>

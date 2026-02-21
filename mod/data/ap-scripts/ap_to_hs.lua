@@ -3,12 +3,12 @@
 -- ap_to_hs handles events from AP Proxy -> Hyperspace.
 -- This usually includes other players' checks and deathlink triggers.
 
-tick_count = 0
-ap_to_hs_proxy_file = os.getenv("AP_TO_HS_PROXY_FILE")
+TICK_COUNT = 0
+AP_TO_HS_PROXY_FILE = os.getenv("AP_TO_HS_PROXY_FILE")
 
 -- Periodically fetch events from AP Proxy -> HS file and process them
-function fetch_events()
-    local file = io.open(ap_to_hs_proxy_file or "", "r")
+function mods.FTLAP.proxy.fetchEvents()
+    local file = io.open(AP_TO_HS_PROXY_FILE or "", "r")
     if file then
         local content = file:read("*a")
         file:close()
@@ -23,7 +23,7 @@ function fetch_events()
             end
         end
         -- After processing events, clear the file
-        file = io.open(ap_to_hs_proxy_file or "", "w")
+        file = io.open(AP_TO_HS_PROXY_FILE or "", "w")
         if file then
             file:write("")
             file:close()
@@ -33,11 +33,11 @@ function fetch_events()
     end
 end
 
-function on_tick()
-    tick_count = (tick_count + 1) % 60
-    if tick_count == 0 then
+function onTick()
+    TICK_COUNT = (TICK_COUNT + 1) % 60
+    if TICK_COUNT == 0 then
         -- Every 60 ticks (1 second), fetch events from AP Proxy
-        fetch_events()
+        mods.FTLAP.proxy.fetchEvents()
     end
 end
 
@@ -45,5 +45,5 @@ function init()
     print("FTL Archipelago - AP_TO_HS bridge active!")
 end
 
-script.on_internal_event(Defines.InternalEvents.ON_TICK, on_tick)
+script.on_internal_event(Defines.InternalEvents.ON_TICK, onTick)
 script.on_internal_event(Defines.InternalEvents.MAIN_MENU, init)
