@@ -211,6 +211,7 @@ dist/*
 examples/
 proxy/events/
 proxy/run/
+run/
 
 # Extracted FTL source files
 ftl_data/

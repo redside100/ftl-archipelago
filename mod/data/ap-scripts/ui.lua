@@ -52,7 +52,7 @@ local function render_top_elements()
     if mods.FTLAP.debug.debugDisplay then
         local baseX = 1271
         local baseY = 16
-        info = {
+        local info = {
             "Mouse position: " .. mousePos.x .. ", " .. mousePos.y,
             "Current sector: " .. Hyperspace.App.world.starMap.currentSector.level,
             "Current location: " .. Hyperspace.App.world.starMap.currentLoc.loc.x .. ", " ..

@@ -1,19 +1,21 @@
-<event name = "AP_DEBUG">
+<!-- Start custom events -->
+<event name="AP_DEBUG">
     <text>FTL Archipelago Debug Menu</text>
     <choice>
         <text>Toggle debug display</text>
-        <event load="AP_DEBUG_TOGGLE_DEBUG_DISPLAY"/>
+        <event load="AP_DEBUG_TOGGLE_DEBUG_DISPLAY" />
     </choice>
     <choice>
         <text>Send test proxy event</text>
-        <event load="AP_DEBUG_SEND_TEST_PROXY_EVENT"/>
+        <event load="AP_DEBUG_SEND_TEST_PROXY_EVENT" />
     </choice>
     <choice>
         <text>Jumble star map</text>
-        <event load="AP_DEBUG_JUMBLE_STAR_MAP"/>
+        <event load="AP_DEBUG_JUMBLE_STAR_MAP" />
     </choice>
 </event>
 
-<event name = "AP_DEBUG_TOGGLE_DEBUG_DISPLAY" />
-<event name = "AP_DEBUG_SEND_TEST_PROXY_EVENT" />
-<event name = "AP_DEBUG_JUMBLE_STAR_MAP" />
+<event name="AP_DEBUG_TOGGLE_DEBUG_DISPLAY" />
+<event name="AP_DEBUG_SEND_TEST_PROXY_EVENT" />
+<event name="AP_DEBUG_JUMBLE_STAR_MAP" />
+<event name="AP_REWARD" />
